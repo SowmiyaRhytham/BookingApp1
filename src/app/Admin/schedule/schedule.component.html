@@ -1,0 +1,141 @@
+<div class="row">
+    <div class="col-sm-1 mt-4"></div>
+  
+      <div class="col-sm-10 mt-4">
+  
+        <div class="card">
+  
+          <div class="card-body" style="overflow-x:scroll;overflow-y: scroll;">
+  
+            <p class="card-title"><b>Schedule Master</b>&nbsp;<button type="button" class="btn btn-secondary" (click)="open(mymodal)" id="btn1"  data-bs-toggle="modal" data-bs-target="#exampleModal"><b>+</b></button></p>
+            
+      
+            <table class="table table-striped" >
+  
+              <thead>
+  
+              <tr>
+                <th scope="col">Airline Name</th>
+                <th scope="col">Flight Number</th>
+                <th scope="col">Arrival Time</th>
+                <th scope="col">Depature Time</th>              
+                <th scope="col">Source</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Schedule Days</th>
+                <th scope="col">Ticket Cost For Business</th>
+                <th scope="col">Ticket Cost For non Business</th>
+                <th scope="col">Meal Preference</th>
+                <th scope="col"></th>
+  
+              </tr>
+  
+              </thead>
+  
+              <tbody>
+  
+              <tr *ngFor="let row of scheduledata">
+  
+                <td>{{row.airlinename}}</td>
+  
+                <td>{{row.address}}</td>
+
+                <td>{{row.address}}</td>
+  
+                <td>{{row.contactnumber}}</td>
+
+                <td>{{row.contactnumber}}</td>
+
+                <td>{{row.contactnumber}}</td>
+
+                <td>{{row.contactnumber}}</td>
+
+                <td>{{row.contactnumber}}</td>
+
+                <td>{{row.contactnumber}}</td>
+
+                <td>{{row.contactnumber}}</td>
+
+  
+                <td><button class="btn btn-info btn-sm" (click)="onEdit(mymodal,row)"><b>Edit</b></button></td>
+  
+              </tr>
+  
+              </tbody>
+        
+        </table>
+     
+        <ng-template #mymodal let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title"  >Add Flight</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body" style="overflow-y:auto;">
+            <form  [formGroup]="ScheduleAddfrom">
+              <div class="mb-3">
+                <label for="AirlineId" class="col-form-label">Airline Name:</label>
+                  <select class="form-control" formControlName="AirlineId">
+                    <option>--select--</option>
+                  </select>
+                 
+                </div>
+              
+                <div class="mb-3">
+                    <label for="FlightId" class="col-form-label">Flight Name:</label>
+                      <select class="form-control" formControlName="FlightId">
+                        <option>--select--</option>
+                      </select>
+                 </div>
+                  
+              <div class="mb-3">
+                <label for="ArrivalTime" class="col-form-label">Arrival Time:</label>
+                  <input type="text" class="form-control" formControlName="ArrivalTime" placeholder="Arrival Time"  >
+                </div>
+                
+                
+              <div class="mb-3">
+                <label for="TotalSeats" class="col-form-label">Depature Time:</label>
+                <input type="text" class="form-control" formControlName="DepatureTime" placeholder="DepatureTime:" >
+              </div>
+  
+              <div class="mb-3">
+                <label for="TotalBusinessSeats" class="col-form-label">Schedule Days:</label>
+                <input type="text" class="form-control" formControlName="ScheduleDays" placeholder="Schedule Days:" >
+              </div>
+  
+              <div class="mb-3">
+                <label for="TicketCostForBusiness" class="col-form-label">Ticket Cost For Business:</label>
+                <input type="text" class="form-control" formControlName="TicketCostForBusiness" placeholder="Ticket Cost For Business" >
+              </div>
+
+
+              
+              <div class="mb-3">
+                <label for="TicketCostForNonBusiness" class="col-form-label">Ticket Cost For Non Business:</label>
+                <input type="text" class="form-control" formControlName="TicketCostForNonBusiness" placeholder="Ticket Cost For Non Business" >
+              </div>
+  
+             
+              <div class="mb-3">
+                <label for="MealPreference" class="col-form-label">Meal Preference:</label>
+                <input type="text" class="form-control" formControlName="MealPreference" placeholder="Ticket Cost For Non Business" >
+              </div>
+
+          </form>
+          </div>
+          <div class="modal-footer" >
+            <button type="submit"  class="btn btn-success" (click)="AddSchedule()" id="btnSave" >Save</button>
+            <button type="submit"  class="btn btn-success" (click)="UpdateSchedule()" id="btnUpdate" >Update</button>
+            <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+          </div>
+        </ng-template>
+        
+        </div>
+  
+  
+        </div>
+  
+  
+        
+        

@@ -1,0 +1,110 @@
+<div class="row">
+    <div class="col-sm-1 mt-4"></div>
+  
+      <div class="col-sm-10 mt-4">
+  
+        <div class="card">
+  
+          <div class="card-body">
+  
+            <p class="card-title"><b>FLIGHT MASTER</b>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-secondary" (click)="open(mymodal)" id="btn1"  data-bs-toggle="modal" data-bs-target="#exampleModal"><b>+</b></button></p>
+            
+      
+            <table class="table table-striped" style="overflow-x: scroll;overflow-y: scroll;">
+  
+              <thead>
+  
+              <tr>
+                <th scope="col">Airline Name</th>
+                <th scope="col">Flight Number</th>
+                <th scope="col">InstrumentUsed</th>
+                <th scope="col">Total Seats</th>              
+                <th scope="col">Total Business Seats</th>
+                <th scope="col">Total Non Business Seats</th>
+                <th scope="col"></th>
+  
+              </tr>
+  
+              </thead>
+  
+              <tbody>
+  
+              <tr *ngFor="let row of flightdata">
+  
+                <td>{{row.flightid}}</td>
+  
+                <td>{{row.airlineid}}</td>
+
+                <td>{{row.instrumentused}}</td>
+  
+                <td>{{row.totalseats}}</td>
+
+                <td>{{row.totalbusinessseats}}</td>
+
+                <td>{{row.totalnonbusinessseats}}</td>
+  
+                <td><button class="btn btn-success btn-sm" (click)="onEdit(mymodal,row)" id="btnEdit"><b>Edit</b></button></td>
+  
+              </tr>
+  
+              </tbody>
+        
+        </table>
+     
+        <ng-template #mymodal let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title"  >Add Flight</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body" style="overflow-y:auto;">
+            <form  [formGroup]="FlightAddfrom">
+              <div class="mb-3" >
+                <label for="AirlineId" class="col-form-label">Airline Name:</label>
+                  <select  class="form-select" id="ddAirline">
+                    <option >--Select Airline--</option>
+                    <option *ngFor="let row of airlinedata" type="number" value={{row.airlineid}}>{{row.airlinename}}</option>
+                  </select>
+                 
+                </div>
+                
+              <div class="mb-3">
+                <label for="InstrumentUsed" class="col-form-label">Instrument Used:</label>
+                  <input type="text" class="form-control" formControlName="InstrumentUsed" placeholder="Instrument Used"  >
+                </div>
+                
+                
+              <div class="mb-3">
+                <label for="TotalSeats" class="col-form-label">Total Seats:</label>
+                <input type="number" class="form-control" formControlName="TotalSeats" placeholder="Total Seats:" >
+              </div>
+  
+              <div class="mb-3">
+                <label for="TotalBusinessSeats" class="col-form-label">Total Business Seats:</label>
+                <input type="number" class="form-control" formControlName="TotalBusinessSeats" placeholder="Total Business Seats:" >
+              </div>
+  
+              <div class="mb-3">
+                <label for="TotalNonBusinessSeats" class="col-form-label">Total Non Business Seats:</label>
+                <input type="number" class="form-control" formControlName="TotalNonBusinessSeats" placeholder="Total Non Business Seats" >
+              </div>
+  
+  
+          </form>
+          </div>
+          <div class="modal-footer" >
+            <button type="submit"  class="btn btn-success" (click)="AddFlight()" id="btnSave" >Save</button>
+            <button type="submit"  class="btn btn-success" (click)="UpdateFlight()" id="btnUpdate" >Update</button>
+            <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+          </div>
+        </ng-template>
+        
+        </div>
+  
+  
+        </div>
+  
+  
+        
+        
