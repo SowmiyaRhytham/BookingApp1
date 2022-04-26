@@ -74,7 +74,7 @@
             <table class="table"  id="tblFlight">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    
                     <th scope="col">Airline</th>
                     <th scope="col">Flight</th>
                     <th scope="col">Timing</th>
@@ -85,8 +85,8 @@
                 <tbody>
                   <tr *ngFor="let row of bookdata;let i=index"  [ngClass]="row.selected ? 'active':''">
                     
-                    <td>{{row.airlinename}}</td>
-                    <td>{{row.airlinename}}</td>
+                
+                    <td style="color: indigo;"><b>{{row.airlinename}}</b></td>
                     <td>{{row.flightid}}</td>
                     <td>{{row.arrival}}</td>
                     <td>{{row.tickecostforbusiness}}</td>
@@ -94,6 +94,16 @@
                     <td><button (click)="selectMe(row)" class="btn btn-success">select</button></td>
                 </tbody>
               </table>
+
+              <div class="mb-3"  id="divSeat">
+                <label  class="col-form-label"><b>Seat Type: </b></label>
+                <select >
+                  <option value="E">Economeyseat</option>
+                  <option value="B">Buisnessseat</option>
+                </select>                 
+                </div>
+              
+              
 
         </div>
 
@@ -104,32 +114,132 @@
 
       <div class="row">
         <div class="col-sm-5 mt-4">
+          <p class="card-title" id="btnAdd"><b>ADD PASSENGER</b>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-secondary" (click)="open(mymodal)" id="btn1"  data-bs-toggle="modal" data-bs-target="#exampleModal"><b>+</b></button></p>
           
           <table class="table"  id="tblPassenger">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">Airline</th>
-                <th scope="col">Flight</th>
-                <th scope="col">Timing</th>
-                <th scope="col">Buisnessseatcost</th>
-                <th scope="col">Economeyseatcost</th>
+                <th scope="col">Name</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Emailid</th>
+                <th scope="col">MealPreference</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let row of bookdata;let i=index"  [ngClass]="row.selected ? 'active':''">
+              <tr *ngFor="let row of passengerdata;">
                 
-                <td>{{row.airlinename}}</td>
-                <td>{{row.airlinename}}</td>
-                <td>{{row.flightid}}</td>
-                <td>{{row.arrival}}</td>
-                <td>{{row.tickecostforbusiness}}</td>
-                <td>{{row.tickecostfornonbusiness}}</td>
-                <td><button (click)="selectMe(row)" class="btn btn-success">select</button></td>
+                <td style="color: indigo;">{{row.Name}}</td>
+                <td>{{row.Gender}}</td>
+                <td>{{row.Emailid}}</td>
+                <td>{{row.MealPreference}}</td>
             </tbody>
           </table>
         </div>
+
+        <div class="col-sm-1 mt-4"></div>
+
+
+        <div class="col-sm-6 mt-4">
+          <p class="card-title" id="btnDis"><b>Prize Summary</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-secondary" (click)="open(mymodal1)" id="btn2"  data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Apply Discount</b></button></p>
+          
+          <table class="table"  id="tblDiscount">
+            <thead>
+              <tr>
+                <th scope="col">Total Amount</th>
+                <th scope="col">Discount Amount</th>
+                <th scope="col">Amount(To be paid)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of passengerdata;">
+                
+                <td style="color: indigo;">{{row.Name}}</td>
+                <td>{{row.Gender}}</td>
+                <td>{{row.Emailid}}</td>
+                <td><button class="btn btn-success">Pay & Checkout</button></td>
+            </tbody>
+          </table>
+        </div>
+
+
       </div>
   </div>
 
+
+
+
+
   
+  
+
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title"  >Add Passenger</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form  [formGroup]="PassengerAddfrom">
+        <div class="mb-3">
+          <label for="Name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" formControlName="Name" placeholder="Name" >
+          </div>
+          
+        <div class="mb-3">
+          <label for="Gender" class="col-form-label">Gender:</label>
+            <input type="text" class="form-control" formControlName="Gender" placeholder="Gender"  >
+          </div>
+          
+          
+        <div class="mb-3">
+          <label for="Emailid" class="col-form-label">Emailid:</label>
+          <input type="text" class="form-control" formControlName="Emailid" placeholder="Emailid" >
+        </div>
+
+          
+        <div class="mb-3">
+          <label for="MealPreference" class="col-form-label">Meal Preference:</label>
+          <input type="text" class="form-control" formControlName="MealPreference" placeholder="MealPreference" >
+        </div>
+
+        
+
+    </form>
+    </div>
+    <div class="modal-footer" >
+      <button type="submit"  class="btn btn-success" (click)="AddPassenger()" id="btnSave" >Add</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+    </div>
+  </ng-template>
+ 
+
+
+
+
+
+
+  <ng-template #mymodal1 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title"  >Apply Discount</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form  [formGroup]="PassengerAddfrom">
+          
+        <div class="mb-3">
+          <label for="DiscountCode" class="col-form-label">Discount Code:</label>
+          <input type="text" class="form-control" formControlName="DiscountCode" placeholder="MealPreference" >
+        </div>
+
+    </form>
+    </div>
+    <div class="modal-footer" >
+      <button type="submit"  class="btn btn-success" (click)="ApplyDiscount()" id="btnApply" >Apply</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+    </div>
+ 
+  </ng-template>
+ 
