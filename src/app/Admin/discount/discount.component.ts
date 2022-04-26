@@ -5,6 +5,7 @@ import { AuthServiceService } from 'src/app/auth-service.service';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
 
 
+
 @Component({
   selector: 'app-discount',
   templateUrl: './discount.component.html',
@@ -27,10 +28,10 @@ export class DiscountComponent implements OnInit {
     $('#btnUpdate').hide();
 
     this.DiscountAddfrom = new FormGroup({
-      Airlinename:new FormControl('',[Validators.required]),
-      Address:new FormControl('',[Validators.required]),
-      Contactnumber:new FormControl('',[Validators.required]),
-      IsBlock:new FormControl('')
+      Discountcode:new FormControl('',[Validators.required]),
+      Amount:new FormControl('',[Validators.required]),
+      Expiryfromdate:new FormControl('',[Validators.required]),
+      Expirytodate:new FormControl('',[Validators.required])
   });
      this.GetAllDiscount();    
   }
@@ -44,10 +45,10 @@ export class DiscountComponent implements OnInit {
     $('#btnUpdate').hide();
 
     this.DiscountAddfrom.patchValue({
-      Airlinename:"",
-      Address:"",
-      Contactnumber:"",
-      isBlock:""
+    Discountcode:"",
+    Amount:"",
+    Expiryfromdate:"",
+    Expirytodate:""
     }); 
    
   } 
@@ -64,23 +65,27 @@ onEdit(content:any,row:any)
   $('#btnUpdate').show();
 
   this.DiscountAddfrom.patchValue({
-    Airlinename:row.airlinename,
-    Address:row.address,
-    Contactnumber:row.contactnumber,
-    isBlock:row.isBlock
+    Discountcode:row.discountcode,
+    Amount:row.amount,
+    Expiryfromdate:row.expiryfromdate,
+    Expirytodate:row.expirytodate
     
   }); 
   
 }  
 
+
+
   AddDiscount()
   {
     if(this.DiscountAddfrom.valid)
     {  
-     
-      this.authService.AddAirline(this.DiscountAddfrom.value).subscribe(result=>{
+    
+       console.log( this.DiscountAddfrom.value["Expirytodate"]);
+
+      this.authService.AddDiscount(this.DiscountAddfrom.value).subscribe(result=>{
         this.modalService.dismissAll();
-        alert("Airline Added Successfully!!!");
+        alert("Discount Added Successfully!!!");
         this.GetAllDiscount();  
     });
     
@@ -97,9 +102,9 @@ onEdit(content:any,row:any)
     if(this.DiscountAddfrom.valid)
     {  
       
-      this.authService.UpdatetAirline(this.DiscountAddfrom.value).subscribe(result=>{ 
+      this.authService.UpdatetDiscount(this.DiscountAddfrom.value).subscribe(result=>{ 
         this.modalService.dismissAll();
-        alert("Airline Updated Successfully!!!");
+        alert("Discount Updated Successfully!!!");
         this.GetAllDiscount();  
     });
     
@@ -113,14 +118,13 @@ onEdit(content:any,row:any)
 
 GetAllDiscount()
   {
-      this.authService.getAllAirline(this.DiscountAddfrom.value).subscribe(result=>{ 
+      this.authService.getAllDiscount(this.DiscountAddfrom.value).subscribe(result=>{ 
         console.log(result); 
         this.discountdata=result;
         console.log(this.discountdata);
     });
    
   }
-
 
 }
 

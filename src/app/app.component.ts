@@ -30,18 +30,4 @@ export class AppComponent {
       
   }
 
-  
-  onLogin(role:string)
-  {
-    console.log("helmas")
-    if(role == "Admin")
-    {
-      $("#ddMaster").hide();
-    }
-    else
-    {
-      $("#ddMaster").hide();
-    }
-  }
-
 }

@@ -35,25 +35,25 @@
   
               <tr *ngFor="let row of scheduledata">
   
-                <td>{{row.airlinename}}</td>
+                <td>{{row.airlineid}}</td>
   
-                <td>{{row.address}}</td>
+                <td>{{row.flightid}}</td>
 
-                <td>{{row.address}}</td>
+                <td>{{row.arrivaltime}}</td>
   
-                <td>{{row.contactnumber}}</td>
+                <td>{{row.depaturetime}}</td>
 
-                <td>{{row.contactnumber}}</td>
+                <td>{{row.source}}</td>
 
-                <td>{{row.contactnumber}}</td>
+                <td>{{row.destination}}</td>
 
-                <td>{{row.contactnumber}}</td>
+                <td>{{row.scheduledays}}</td>
 
-                <td>{{row.contactnumber}}</td>
+                <td>{{row.tickecostforbusiness}}</td>
 
-                <td>{{row.contactnumber}}</td>
+                <td>{{row.tickecostfornonbusiness}}</td>
 
-                <td>{{row.contactnumber}}</td>
+                <td>{{row.mealpreference}}</td>
 
   
                 <td><button class="btn btn-info btn-sm" (click)="onEdit(mymodal,row)"><b>Edit</b></button></td>
@@ -74,34 +74,65 @@
           <div class="modal-body" style="overflow-y:auto;">
             <form  [formGroup]="ScheduleAddfrom">
               <div class="mb-3">
-                <label for="AirlineId" class="col-form-label">Airline Name:</label>
-                  <select class="form-control" formControlName="AirlineId">
-                    <option>--select--</option>
+                <label for="ddAirline" class="col-form-label">Airline Name:</label>
+                  <select class="form-control" id="ddAirline">
+                    <option >--select--</option>
+                    <option *ngFor="let row of airlinedata"value={{row.airlineid}}>{{row.airlinename}}</option>
                   </select>
                  
                 </div>
               
                 <div class="mb-3">
-                    <label for="FlightId" class="col-form-label">Flight Name:</label>
-                      <select class="form-control" formControlName="FlightId">
-                        <option>--select--</option>
+                    <label for="ddFlight" class="col-form-label">Flight Name:</label>
+                      <select class="form-control" id="ddFlight">
+                        <option >--select--</option>
+                        <option *ngFor="let row of flightdata"value={{row.flightid}}>{{row.flightid}}</option>
                       </select>
                  </div>
                   
               <div class="mb-3">
-                <label for="ArrivalTime" class="col-form-label">Arrival Time:</label>
-                  <input type="text" class="form-control" formControlName="ArrivalTime" placeholder="Arrival Time"  >
+                <label for="ArrivalTime" class="col-form-label">Arrival Date:</label>
+                  <input type="date" class="form-control" formControlName="ArrivalTime" placeholder="yyyy-mm-dd"  >
                 </div>
-                
+
                 
               <div class="mb-3">
-                <label for="TotalSeats" class="col-form-label">Depature Time:</label>
-                <input type="text" class="form-control" formControlName="DepatureTime" placeholder="DepatureTime:" >
+                <label for="DepatureTime" class="col-form-label">Depature Date:</label>
+                <input type="date" class="form-control" formControlName="DepatureTime" placeholder="yyyy-mm-dd" >
+              </div>
+
+
+              <div class="mb-3">
+                <label for="ArrivalTime" class="col-form-label">Arrival Time:</label>
+                  <input type="time" class="form-control" formControlName="Arrival" placeholder="mm:ss"  >
+                </div>
+              
+                <div class="mb-3">
+                  <label for="ArrivalTime" class="col-form-label">Arrival Time:</label>
+                    <input type="time" class="form-control" formControlName="Depature" placeholder="mm:ss"  >
+                  </div>
+                
+
+
+              <div class="mb-3">
+                <label for="Source" class="col-form-label">Source:</label>
+                <input type="text" class="form-control" formControlName="Source" placeholder="Source" >
               </div>
   
+
               <div class="mb-3">
-                <label for="TotalBusinessSeats" class="col-form-label">Schedule Days:</label>
-                <input type="text" class="form-control" formControlName="ScheduleDays" placeholder="Schedule Days:" >
+                <label for="Destination" class="col-form-label">Destination:</label>
+                <input type="text" class="form-control" formControlName="Destination" placeholder="Destination" >
+              </div>
+  
+  
+              <div class="mb-3">
+                <label for="ddSchedule" class="col-form-label">Schedule Days:</label>
+                <select class="form-control" id="ddSchedule">
+                  <option>--select--</option>
+                  <option value="WD">Weekdays</option>
+                  <option value="WE">Weekends</option>
+                </select>
               </div>
   
               <div class="mb-3">
@@ -118,8 +149,13 @@
   
              
               <div class="mb-3">
-                <label for="MealPreference" class="col-form-label">Meal Preference:</label>
-                <input type="text" class="form-control" formControlName="MealPreference" placeholder="Ticket Cost For Non Business" >
+                <label for="ddMealPreference" class="col-form-label">Meal Preference:</label>
+                <select class="form-control" id="ddMealPreference">
+                  <option>--select--</option>
+                  <option value="V">VEG</option>
+                  <option value="NV">NON-VEG</option>
+                </select>
+              
               </div>
 
           </form>

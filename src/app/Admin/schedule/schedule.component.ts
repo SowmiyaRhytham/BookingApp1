@@ -17,6 +17,16 @@ export class ScheduleComponent implements OnInit {
   ScheduleAddfrom = new FormGroup({    
   });
 
+  flightdata !: any;
+  airlinedata !: any;
+
+  
+  FlightAddfrom = new FormGroup({    
+  });
+
+  AirlineAddfrom = new FormGroup({    
+  });
+
 
   constructor(private modalService: NgbModal,public authService:AuthServiceService) {}
 
@@ -27,18 +37,24 @@ export class ScheduleComponent implements OnInit {
     $('#btnUpdate').hide();
 
     this.ScheduleAddfrom = new FormGroup({
-      AirlineId:new FormControl('',[Validators.required]),
-      FlightId:new FormControl('',[Validators.required]),
-      ArrivalTime:new FormControl('',[Validators.required]),
-      DepatureTime:new FormControl('',[Validators.required]),
-      ScheduleDays:new FormControl('',[Validators.required]),
-      TicketCostForBusiness:new FormControl('',[Validators.required]),
-      TicketCostForNonBusiness:new FormControl('',[Validators.required]),
-      MealPreference:new FormControl('',[Validators.required]),
+    AirlineId:new FormControl('',[Validators.required]),
+    FlightId:new FormControl('',[Validators.required]),
+    ArrivalTime:new FormControl('',[Validators.required]),
+    DepatureTime:new FormControl('',[Validators.required]),
+    Arrival:new FormControl('',[Validators.required]),
+    Depature:new FormControl('',[Validators.required]),
+    Source:new FormControl('',[Validators.required]),
+    Destination:new FormControl('',[Validators.required]),
+    ScheduleDays:new FormControl('',[Validators.required]),
+    TicketCostForBusiness:new FormControl('',[Validators.required]),
+    TicketCostForNonBusiness:new FormControl('',[Validators.required]),
+    MealPreference:new FormControl('',[Validators.required]),
 
   });
 
   this.GetAllSchedule(); 
+  this.GetAllFlight();
+  this.GetAllAirline()
 
   }
 
@@ -51,10 +67,18 @@ export class ScheduleComponent implements OnInit {
     $('#btnUpdate').hide();
   
     this.ScheduleAddfrom.patchValue({
-      Airlinename:"",
-      Address:"",
-      Contactnumber:"",
-      isBlock:""
+    AirlineId:"",
+    FlightId:"",
+    ArrivalTime:"",
+    DepatureTime:"",
+    Arrival:"",
+    Depature:"",
+    Source:"",
+    Destination:"",
+    ScheduleDays:"",
+    TicketCostForBusiness:"",
+    TicketCostForNonBusiness:"",
+    MealPreference:"",
     }); 
    
   } 
@@ -71,30 +95,44 @@ export class ScheduleComponent implements OnInit {
   $('#btnUpdate').show();
   
   this.ScheduleAddfrom.patchValue({
-    Airlinename:row.airlinename,
-    Address:row.address,
-    Contactnumber:row.contactnumber,
-    isBlock:row.isBlock
-    
+    AirlineId:row.airlineid,
+    FlightId:row.flightid,
+    ArrivalTime:row.arrivaltime,
+    DepatureTime:row.depaturetime,
+    Arrival:row.arrivaltime,
+    Depature:row.depaturetime,
+    Source:row.depaturetime,
+    Destination:row.depaturetime,
+    ScheduleDays:row.isBlock,
+    TicketCostForBusiness:row.isBlock,
+    TicketCostForNonBusiness:row.isBlock,
+    MealPreference:row.isBlock,
   }); 
   
   }  
   
   AddSchedule()
   {
-    if(this.ScheduleAddfrom.valid)
-    {  
-      this.authService.AddAirline(this.ScheduleAddfrom.value).subscribe(result=>{
+    //alert($("#ddAirline option:selected").val());
+    this.ScheduleAddfrom.value["AirlineId"] = Number($("#ddAirline option:selected").val());
+    this.ScheduleAddfrom.value["FlightId"] = Number($("#ddFlight option:selected").val());
+    this.ScheduleAddfrom.value["ScheduleDays"] = ($("#ddSchedule option:selected").val());
+    this.ScheduleAddfrom.value["MealPreference"] = ($("#ddMealPreference option:selected").val());
+
+    console.log(this.ScheduleAddfrom.value["AirlineId"]);
+//    if(this.ScheduleAddfrom.valid)
+  //  {  
+      this.authService.AddSchedule(this.ScheduleAddfrom.value).subscribe(result=>{
         this.modalService.dismissAll();
-        alert("Flight Added Successfully!!!");
+        alert("Schedule Added Successfully!!!");
         this.GetAllSchedule();  
     });
     
-    }
-    else
-    {
-      alert('Please enter all the details!!');
-    }
+    //}
+    //else
+    //{
+      //alert('Please enter all the details!!');
+    //}
   }
   
   
@@ -102,7 +140,7 @@ export class ScheduleComponent implements OnInit {
   {
     if(this.ScheduleAddfrom.valid)
     {  
-      this.authService.UpdatetAirline(this.ScheduleAddfrom.value).subscribe(result=>{ 
+      this.authService.UpdatetSchedule(this.ScheduleAddfrom.value).subscribe(result=>{ 
         this.modalService.dismissAll();
         alert("Schedule Updated Successfully!!!");
         this.GetAllSchedule();  
@@ -118,13 +156,37 @@ export class ScheduleComponent implements OnInit {
   
   GetAllSchedule()
   {
-      this.authService.getAllAirline(this.ScheduleAddfrom.value).subscribe(result=>{ 
+      this.authService.getAllSchedule(this.ScheduleAddfrom.value).subscribe(result=>{ 
         console.log(result); 
         this.scheduledata=result;
         console.log(this.scheduledata);
     });
    
   }
+
+
+  
+GetAllFlight()
+{
+    this.authService.getAllFlight(this.FlightAddfrom.value).subscribe(result=>{ 
+      console.log(result); 
+      this.flightdata=result;
+      console.log(this.flightdata);
+  });
+ 
+}
+
+
+GetAllAirline()
+  {
+      this.authService.getAllAirline(this.AirlineAddfrom.value).subscribe(result=>{ 
+        console.log(result); 
+        this.airlinedata=result;
+        console.log(this.airlinedata);
+    });
+   
+  }
+
   
 
 }

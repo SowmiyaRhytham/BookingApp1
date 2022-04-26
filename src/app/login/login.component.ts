@@ -33,12 +33,14 @@ export class LoginComponent implements OnInit {
   }
 
   initForm(){
-  
+  if(localStorage.getItem('token') != null)
+  {
+    location.replace("/home");     
+  }
   }
 
   loginProcess()
    {
-    //alert('hi');
     if(this.formGroup.valid)
     {
       
@@ -48,17 +50,21 @@ export class LoginComponent implements OnInit {
         {
          var ss = result.hasOwnProperty("role")
           const check =result as LoginModel;
+          
 
           console.log("sowmi" + check.role);
-          this.login.emit(check.role);
+          localStorage.setItem('Role',check.role);
+          localStorage.setItem('token',check.token);
+          localStorage.setItem('userid',check.userid);
 
+        
           if(check.role == "Admin")
           {
-            location.replace("/airline");     
+            location.replace("/home");     
           }
           else
           {
-            location.replace("/airline");     
+            location.replace("/home");     
           }
           
         }

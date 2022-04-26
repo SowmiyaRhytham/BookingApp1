@@ -1,79 +1,135 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!--Card-->
-<div class="card shadow mb-5 bg-white rounded">
-    <!--Card-Body-->
-    <div class="card-body">
-        <!--Card-Title-->
-       <!-- <p class="card-title text-center shadow mb-5 rounded">Travel Booking Form</p> -->
-        <div class="icons text-center">
-            <i class="fa fa-plane fa-2x" aria-hidden="true"></i>
-           <!-- <i class="fa fa-taxi fa-2x" aria-hidden="true"></i>
-            <i class="fa fa-train fa-2x" aria-hidden="true"></i> -->
-        </div> 
-        <hr>
-       <!-- <p class="searchText"><strong>Search For Cheap Flights</strong></p> 
-        
 
-        </div><br>-->
-        <!--Second Row-->
-        <div class="row"> <div class="col-sm-4"> <label class="radiobtn"><input type="radio" name="gender" value="male"><b style="color: indigo;"> One Way</b></label> <label class="radiobtn"><input type="radio" name="gender" value="male"><b style="color: indigo;"> Round Trip</b></label></div> </div>
-        <br>
-        <div class="row">
-            <div class="col-sm-6"> <select class="browser-default custom-select mb-4" id="select">
-                    <option value="" disabled="" selected="">From City/Airport</option>
-                    <option value="1">New Delhi</option>
-                    <option value="2">Mumbai</option>
-                    <option value="3">Bangalore</option>
-                </select> </div>
-            <div class="col-sm-6"> <select class="browser-default custom-select mb-4" id="select">
-                    <option value="" disabled="" selected="">To City/Airport</option>
-                    <option value="1">New Delhi</option>
-                    <option value="2">Mumbai</option>
-                    <option value="3">Bangalore</option>
-                </select> </div>
+  <div class="container">
+      <div class="row">
+          
+        <div class="col-sm-5 mt-4">
+           
+            <div class="card shadow mb-5 bg-white rounded">
+                <!--Card-Body-->
+                <div class="card-body">
+                    <!--Card-Title-->
+                    <p class="card-title text-center"><b>FLIGHT BOOKING FORM</b></p>
+                    <hr>
+                   <!-- <p class="searchText"><strong>Search For Cheap Flights</strong></p> 
+                    
+                    </div><br>-->
+                    <!--Second Row-->
+            <form  [formGroup]="BookAddfrom">
+
+                    <div class="row"> <div class="col-sm-6"> <label class="radiobtn"><input type="radio" name="gender" value="male"><b style="color: indigo;"> One Way</b></label> <label class="radiobtn"><input type="radio" name="gender" value="male"><b style="color: indigo;"> Round Trip</b></label></div> </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6"> 
+                          <!--<label for="Source" class="col-form-label">Source</label>-->
+                          <input type="text" class="form-control" formControlName="Source" placeholder="Source" >
+                        
+                        </div>
+                        <div class="col-sm-6">
+                          <!--<label for="Destination" class="col-form-label">Destination</label>-->
+                           <input type="text" class="form-control" formControlName="Destination" placeholder="Destination" >
+              
+                        </div>
+                    </div>
+                    <!--Third Row-->
+                    <div class="row">
+                        <div class="col-sm-6"> <input type="date" class="form-control" formControlName="ArrivalTime" placeholder="yyyy-mm-dd"  > </div>
+                        <div class="col-sm-6"> <input type="date" class="form-control" formControlName="DepatureTime" placeholder="yyyy-mm-dd"  > </div>
+                    </div>
+                    <!--Fifth Row
+                    <div class="row">
+                        <div class="col-sm-4"> <select class="browser-default custom-select mb-4" id="select">
+                                <option value="" disabled="" selected="">Kids(0-14)</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select> </div>
+                        <div class="col-sm-4"> <select class="browser-default custom-select mb-4" id="select">
+                                <option value="" disabled="" selected="">Adults(15-64)</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select> </div>
+                        <div class="col-sm-4"> <select class="browser-default custom-select mb-4" id="select">
+                                <option value="" disabled="" selected="">Seniors(65+)</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select> </div>
+                    </div> -->
+                    <br>
+
+                    <button class="btn btn-primary" style="background-color:indigo;" (click)="Onfindflights()"><b>Find Flights</b></button>
+                    </form>
+                </div>
+            </div>
+  
         </div>
-        <!--Third Row-->
-        <div class="row">
-            <div class="col-sm-6"> <input placeholder="&#xf073; Departing" type="text" id="date-picker-example" class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome"> </div>
-            <div class="col-sm-6"> <input placeholder="&#xf073; Arriving" type="text" id="date-picker-example" class="form-control datepicker" style="font-family:Arial, FontAwesome"> </div>
+
+        <div class="col-sm-1 mt-4"></div>
+  
+        <div class="col-sm-6 mt-4">
+
+          
+
+            <table class="table"  id="tblFlight">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Airline</th>
+                    <th scope="col">Flight</th>
+                    <th scope="col">Timing</th>
+                    <th scope="col">Buisnessseatcost</th>
+                    <th scope="col">Economeyseatcost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of bookdata;let i=index"  [ngClass]="row.selected ? 'active':''">
+                    
+                    <td>{{row.airlinename}}</td>
+                    <td>{{row.airlinename}}</td>
+                    <td>{{row.flightid}}</td>
+                    <td>{{row.arrival}}</td>
+                    <td>{{row.tickecostforbusiness}}</td>
+                    <td>{{row.tickecostfornonbusiness}}</td>
+                    <td><button (click)="selectMe(row)" class="btn btn-success">select</button></td>
+                </tbody>
+              </table>
+
         </div>
-        <!--Fourth Row-->
-        <div class="row mt-4">
-            <div class="col-sm-6"> <select class="browser-default custom-select mb-4" id="select">
-                    <option value="" disabled="" selected="">Anytime</option>
-                    <option value="1">6:00 AM</option>
-                    <option value="2">3:00 PM</option>
-                    <option value="3">6:00 PM</option>
-                </select> </div>
-            <div class="col-sm-6"> <select class="browser-default custom-select mb-4" id="select">
-                    <option value="" disabled="" selected="">Anytime</option>
-                    <option value="1">6:00 AM</option>
-                    <option value="2">3:00 PM</option>
-                    <option value="3">6:00 PM</option>
-                </select> </div>
+
+  
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-sm-5 mt-4">
+          
+          <table class="table"  id="tblPassenger">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Airline</th>
+                <th scope="col">Flight</th>
+                <th scope="col">Timing</th>
+                <th scope="col">Buisnessseatcost</th>
+                <th scope="col">Economeyseatcost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of bookdata;let i=index"  [ngClass]="row.selected ? 'active':''">
+                
+                <td>{{row.airlinename}}</td>
+                <td>{{row.airlinename}}</td>
+                <td>{{row.flightid}}</td>
+                <td>{{row.arrival}}</td>
+                <td>{{row.tickecostforbusiness}}</td>
+                <td>{{row.tickecostfornonbusiness}}</td>
+                <td><button (click)="selectMe(row)" class="btn btn-success">select</button></td>
+            </tbody>
+          </table>
         </div>
-        <!--Fifth Row-->
-        <div class="row">
-            <div class="col-sm-4"> <select class="browser-default custom-select mb-4" id="select">
-                    <option value="" disabled="" selected="">Kids(0-14)</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select> </div>
-            <div class="col-sm-4"> <select class="browser-default custom-select mb-4" id="select">
-                    <option value="" disabled="" selected="">Adults(15-64)</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select> </div>
-            <div class="col-sm-4"> <select class="browser-default custom-select mb-4" id="select">
-                    <option value="" disabled="" selected="">Seniors(65+)</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select> </div>
-        </div> 
-        <button class="btn btn-primary">Find Flights</button>
-        
-    </div>
-</div>
+      </div>
+  </div>
+
+  

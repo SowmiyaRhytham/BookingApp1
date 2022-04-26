@@ -4,4 +4,5 @@ export interface LoginModel {
     password: any;
     token: string;
      role:string;
+     userid:any;
 }

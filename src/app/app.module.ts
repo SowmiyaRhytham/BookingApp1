@@ -15,8 +15,10 @@ import { FlightComponent } from './Admin/flight/flight.component';
 import { ScheduleComponent } from './Admin/schedule/schedule.component';
 import { DiscountComponent } from './Admin/discount/discount.component';
 import { RegisterComponent } from './register/register.component';
-import { BookingComponent } from './user/booking/booking.component';
 import { FlightBookingComponent } from './User/flight-booking/flight-booking.component';
+import { HomeComponent } from './home/home.component';
+import { ManageBookingComponent } from './User/manage-booking/manage-booking.component';
+import { BookingHistoryComponent } from './User/booking-history/booking-history.component';
 
 
 
@@ -29,8 +31,11 @@ import { FlightBookingComponent } from './User/flight-booking/flight-booking.com
     ScheduleComponent,
     DiscountComponent,
     RegisterComponent,
-    BookingComponent,
-    FlightBookingComponent
+    
+    FlightBookingComponent,
+    HomeComponent,
+    ManageBookingComponent,
+    BookingHistoryComponent
   ],
   imports: [
     BrowserModule,

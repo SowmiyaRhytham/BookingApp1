@@ -1,0 +1,83 @@
+<header *ngIf= isLoggedIn>
+    <nav   class="navbar navbar-expand-lg navbar-light btn-primary">
+      <img src="https://cdn-icons-png.flaticon.com/128/1085/1085493.png" class="img-responsive" alt="Responsive image"  height="2%" width="2%" />
+      
+  &nbsp;&nbsp;
+      <a  href="#"><b> Flight Booking</b></a>
+  
+      <button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  
+        <span class="navbar-toggler-icon"></span>
+  
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      
+        
+         <!-- <a  href="#" style="text-size-adjust: 10px;"><b> Dashboard</b></a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+  
+          <div ngbDropdown class="d-inline-block" id="ddMaster">
+  
+            <button class="btn btn-sm" id="dropdownBasic1" ngbDropdownToggle><b>Master</b></button>
+  
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+  
+              <button ngbDropdownItem ><a routerLink="/home/airline">Airline</a></button>
+  
+                <button ngbDropdownItem><a routerLink="/home/flight">Flight</a></button>
+  
+                <button ngbDropdownItem><a routerLink="/home/schedule">Schedule</a></button>
+  
+                <button ngbDropdownItem><a routerLink="/home/discount">Discount</a></button>
+  
+            </div>
+  
+          </div>
+  
+        
+      </div>
+      <a  href="/login" ><b style="color: darkred;"> Logout</b></a>
+    </nav>
+  
+  </header>
+
+
+
+
+
+  <header *ngIf= !isLoggedIn>
+    <nav   class="navbar navbar-expand-lg navbar-light btn-primary">
+      <img src="https://cdn-icons-png.flaticon.com/128/1085/1085493.png" class="img-responsive" alt="Responsive image"  height="2%" width="2%" />
+      
+  &nbsp;&nbsp;
+      <a  href="#"><b> Flight Booking</b></a>
+  
+      <button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  
+        <span class="navbar-toggler-icon"></span>
+  
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      
+        
+          <a  routerLink="/home/booking" style="text-size-adjust: 10px;"><b> Booking</b></a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+          
+          <a  routerLink="/home/ManageBooking" style="text-size-adjust: 10px;"><b> Manage-Booking</b></a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+          
+          <a  routerLink="/home/BookingHistory" style="text-size-adjust: 10px;"><b> Booking-History</b></a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        
+      </div>
+      <a  href="/login" ><b style="color: darkred;"> Logout</b></a>
+    </nav>
+  
+  </header>
+
+  <router-outlet ></router-outlet>
+  

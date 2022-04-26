@@ -1,19 +1,23 @@
+
+
 .card {
+    
     margin: auto;
     border: solid 1px #dbdad7;
-    width: 60%;
+    
     padding-left: 10px !important;
     padding-bottom: 10px !important;
     padding-right: 10px !important;
-    padding-top: 0px !important
+    padding-top: 20px !important
 }
 
 .card-title {
+    color: brown;
     margin: auto;
     padding: 15px;
     background-color: #2f7fad;
     color: white;
-    width: 80%
+    width: 100%
 }
 
 div.card-body {
@@ -101,3 +105,7 @@ select:focus {
         text-align: center
     }
 }
+
+.active{
+    background-color:aquamarine;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ;
+}                                        
