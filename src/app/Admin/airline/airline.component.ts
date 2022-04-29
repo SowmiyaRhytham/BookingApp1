@@ -70,7 +70,8 @@ onEdit(content:any,row:any)
     Airlinename:row.airlinename,
     Address:row.address,
     Contactnumber:row.contactnumber,
-    isBlock:row.isBlock
+    isBlock:row.isBlock,
+    Airlineid:row.airlineid
   }); 
   
   this.isBlocked=row.isBlock;
@@ -103,6 +104,8 @@ onEdit(content:any,row:any)
 
   UpdateAirline()
   {
+
+    console.log(this.AirlineAddfrom.value);
     if(this.AirlineAddfrom.valid)
     { 
       let isChecked = $('input[type="checkbox"]').prop("checked");

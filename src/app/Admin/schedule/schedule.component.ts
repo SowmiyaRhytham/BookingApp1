@@ -46,8 +46,8 @@ export class ScheduleComponent implements OnInit {
     Source:new FormControl('',[Validators.required]),
     Destination:new FormControl('',[Validators.required]),
     ScheduleDays:new FormControl('',[Validators.required]),
-    TicketCostForBusiness:new FormControl('',[Validators.required]),
-    TicketCostForNonBusiness:new FormControl('',[Validators.required]),
+    TickeCostForBusiness:new FormControl('',[Validators.required]),
+    TickeCostForNonBusiness:new FormControl('',[Validators.required]),
     MealPreference:new FormControl('',[Validators.required]),
 
   });
@@ -76,8 +76,8 @@ export class ScheduleComponent implements OnInit {
     Source:"",
     Destination:"",
     ScheduleDays:"",
-    TicketCostForBusiness:"",
-    TicketCostForNonBusiness:"",
+    TickeCostForBusiness:"",
+    TickeCostForNonBusiness:"",
     MealPreference:"",
     }); 
    
@@ -103,10 +103,10 @@ export class ScheduleComponent implements OnInit {
     Depature:row.depaturetime,
     Source:row.depaturetime,
     Destination:row.depaturetime,
-    ScheduleDays:row.isBlock,
-    TicketCostForBusiness:row.isBlock,
-    TicketCostForNonBusiness:row.isBlock,
-    MealPreference:row.isBlock,
+    ScheduleDays:row.scheduledays,
+    TickeCostForBusiness:row.tickecostforbusiness,
+    TickeCostForNonBusiness:row.tickecostfornonbusiness,
+    MealPreference:row.mealpreference,
   }); 
   
   }  
@@ -118,8 +118,12 @@ export class ScheduleComponent implements OnInit {
     this.ScheduleAddfrom.value["FlightId"] = Number($("#ddFlight option:selected").val());
     this.ScheduleAddfrom.value["ScheduleDays"] = ($("#ddSchedule option:selected").val());
     this.ScheduleAddfrom.value["MealPreference"] = ($("#ddMealPreference option:selected").val());
+    this.ScheduleAddfrom.value["TickeCostForBusiness"] = Number(this.ScheduleAddfrom.value["TickeCostForBusiness"]);
+    this.ScheduleAddfrom.value["TickeCostForNonBusiness"] = Number(this.ScheduleAddfrom.value["TickeCostForNonBusiness"]);
 
     console.log(this.ScheduleAddfrom.value["AirlineId"]);
+
+    console.log(this.ScheduleAddfrom.value);
 //    if(this.ScheduleAddfrom.valid)
   //  {  
       this.authService.AddSchedule(this.ScheduleAddfrom.value).subscribe(result=>{

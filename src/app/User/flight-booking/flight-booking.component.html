@@ -14,9 +14,9 @@
                     
                     </div><br>-->
                     <!--Second Row-->
-            <form  [formGroup]="BookAddfrom">
+            <form  [formGroup]="BookAddform">
 
-                    <div class="row"> <div class="col-sm-6"> <label class="radiobtn"><input type="radio" name="gender" value="male"><b style="color: indigo;"> One Way</b></label> <label class="radiobtn"><input type="radio" name="gender" value="male"><b style="color: indigo;"> Round Trip</b></label></div> </div>
+                    <div class="row"> <div class="col-sm-6"> <label class="radiobtn"><input type="radio" id="OW" name="trip" value="OW"><b style="color: indigo;"> One Way</b></label> <label class="radiobtn"><input type="radio" id="RT" name="trip" value="RT"><b style="color: indigo;"> Round Trip</b></label></div> </div>
                     <br>
                     <div class="row">
                         <div class="col-sm-6"> 
@@ -95,14 +95,33 @@
                 </tbody>
               </table>
 
-              <div class="mb-3"  id="divSeat">
-                <label  class="col-form-label"><b>Seat Type: </b></label>
-                <select >
-                  <option value="E">Economeyseat</option>
-                  <option value="B">Buisnessseat</option>
-                </select>                 
-                </div>
+
               
+              <table class="table"  id="tblRoundtrip">
+                <thead>
+                  <tr>
+                    
+                    <th scope="col">Airline</th>
+                    <th scope="col">Flight</th>
+                    <th scope="col">Timing</th>
+                    <th scope="col">Buisnessseatcost</th>
+                    <th scope="col">Economeyseatcost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of roundtrip;let i=index"  [ngClass]="row.selected ? 'active':''">
+                    
+                
+                    <td style="color: indigo;"><b>{{row.airlinename}}</b></td>
+                    <td>{{row.flightid}}</td>
+                    <td>{{row.arrival}}</td>
+                    <td>{{row.tickecostforbusiness}}</td>
+                    <td>{{row.tickecostfornonbusiness}}</td>
+                    <td><button (click)="selectMeRT(row)" class="btn btn-success">select</button></td>
+                </tbody>
+              </table>
+
+
               
 
         </div>
@@ -151,12 +170,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let row of passengerdata;">
+              <tr *ngFor="let row of discountdata;">
                 
-                <td style="color: indigo;">{{row.Name}}</td>
-                <td>{{row.Gender}}</td>
-                <td>{{row.Emailid}}</td>
-                <td><button class="btn btn-success">Pay & Checkout</button></td>
+                <td style="color: indigo;">{{row.TotalAmount}}</td>
+                <td>{{row.Discount}}</td>
+                <td>{{row.AmountPaid}}</td>
+                <td><button class="btn btn-success" (click)="Checkout()">Pay & Checkout</button></td>
             </tbody>
           </table>
         </div>
@@ -180,7 +199,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <form  [formGroup]="PassengerAddfrom">
+      <form  [formGroup]="PassengerAddform">
         <div class="mb-3">
           <label for="Name" class="col-form-label">Name:</label>
             <input type="text" class="form-control" formControlName="Name" placeholder="Name" >
@@ -197,11 +216,32 @@
           <input type="text" class="form-control" formControlName="Emailid" placeholder="Emailid" >
         </div>
 
+        <div class="mb-3" >
+          <label  class="col-form-label">Seat Type: </label>
+          <select id="ddSeat" class="form-control">
+            <option value="E">Economeyseat</option>
+            <option value="B">Buisnessseat</option>
+          </select>   
+          <label  class="col-form-label">Seat Number: </label>
+          <select id="ddSeat" class="form-control">
+            <option value="E">A1</option>
+            <option value="B">A2</option>
+            <option value="B">B1</option>
+            <option value="B">B2</option>
+            <option value="B">C1</option>
+            <option value="B">C2</option>
+            <option value="B">D1</option>
+          </select>   
+                    
+          </div>
+        
+
           
         <div class="mb-3">
-          <label for="MealPreference" class="col-form-label">Meal Preference:</label>
-          <input type="text" class="form-control" formControlName="MealPreference" placeholder="MealPreference" >
+          <label for="MealPreferences" class="col-form-label">Meal Preference:</label>
+          <input type="text" class="form-control" formControlName="MealPreferences" placeholder="MealPreference" >
         </div>
+
 
         
 
@@ -227,11 +267,11 @@
       </button>
     </div>
     <div class="modal-body">
-      <form  [formGroup]="PassengerAddfrom">
+      <form  [formGroup]="Discountform">
           
         <div class="mb-3">
           <label for="DiscountCode" class="col-form-label">Discount Code:</label>
-          <input type="text" class="form-control" formControlName="DiscountCode" placeholder="MealPreference" >
+          <input type="text" class="form-control" id="DiscountCode" formControlName="DiscountCode" placeholder="DiscountCode" >
         </div>
 
     </form>

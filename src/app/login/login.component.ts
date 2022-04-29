@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   @Output() login = new EventEmitter<string>();
   
-  constructor(private authService: AuthServiceService) { }
+  constructor(private authService: AuthServiceService,private router:Router) { }
 
   ngOnInit(): void {
       this.formGroup = new FormGroup({
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   initForm(){
   if(localStorage.getItem('token') != null)
   {
-    location.replace("/home");     
+    this.router.navigateByUrl("/home");     
   }
   }
 
@@ -60,11 +60,11 @@ export class LoginComponent implements OnInit {
         
           if(check.role == "Admin")
           {
-            location.replace("/home");     
+            this.router.navigateByUrl("/home");     
           }
           else
           {
-            location.replace("/home");     
+            this.router.navigateByUrl("/home");     
           }
           
         }

@@ -10,6 +10,7 @@ import { FlightBookingComponent } from './User/flight-booking/flight-booking.com
 import { HomeComponent } from './home/home.component';
 import { BookingHistoryComponent } from './User/booking-history/booking-history.component';
 import { ManageBookingComponent } from './User/manage-booking/manage-booking.component';
+import { AuthguardGuard } from './authguard.guard';
 
 
 const routes: Routes = [
@@ -20,7 +21,7 @@ const routes: Routes = [
    
    {path:'home',component:HomeComponent,
   children : [
-  {path:'airline',component:AirlineComponent},
+  {path:'airline',component:AirlineComponent,canActivate:[AuthguardGuard]},
   {path:'flight',component:FlightComponent},
   {path:'schedule',component:ScheduleComponent},
   {path:'discount',component:DiscountComponent},

@@ -38,7 +38,7 @@ export class ManageBookingComponent implements OnInit {
 GetBookingHistory()
 {
   //this.BookHistoryfrom.value["Userid"]=Number(localStorage.getItem("userid"));
-  this.BookHistoryfrom.value["Userid"]=2;
+  this.BookHistoryfrom.value["Userid"]=localStorage.getItem("userid");
     this.authService.BookingHistory(this.BookHistoryfrom.value).subscribe(result=>{ 
       console.log(result); 
       this.bookhistorydata=result;
@@ -55,10 +55,39 @@ onCancel(row:any)
   this.ManageBookfrom.value["Passengerid"] = row;
 
   this.authService.CancelBooking(this.ManageBookfrom.value).subscribe(result=>{ 
-  console.log(result); 
+  console.log("Hi"+result); 
+
+  this.BookHistoryfrom.value["Userid"]=localStorage.getItem("userid");
+  this.authService.BookingHistory(this.BookHistoryfrom.value).subscribe(result=>{ 
+    console.log(result); 
+    this.bookhistorydata=result;
+    console.log(this.bookhistorydata);
+});
+
+
   });
 
 }
+
+ myFunction() {
+  var input:any, filter:any, table:any, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
 
 
 }

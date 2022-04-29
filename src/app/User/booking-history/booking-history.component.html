@@ -12,7 +12,7 @@
             <p class="card-title"><b>BOOKING HISTORY</b>&nbsp;&nbsp;&nbsp;</p>
             
       <br>
-      
+      <input type="text" id="myInput" (onkeyup)="myFunction()" placeholder="Search for PNR.." title="Type in a name">
             <table class="table table-striped" style="overflow-x: scroll;overflow-y: scroll;">
   
               <thead class="table-success">
@@ -32,7 +32,7 @@
   
               <tr *ngFor="let row of bookhistorydata">
   
-                <td>{{row.pnrid}}</td>
+                <td>PNR{{row.pnrid}}</td>
   
                 <td>{{row.createddate}}</td>
   
@@ -68,7 +68,8 @@
                   <th scope="col">Name</th>
                   <th scope="col">Gender</th>              
                   <th scope="col">Emailid</th>
-                  <th scope="col">MealPreference</th>
+                  <th scope="col">MealPref</th>
+                  <th scope="col">Status</th>
                   
     
                 </tr>
@@ -79,7 +80,7 @@
     
                 <tr *ngFor="let row of passengerdata">
     
-                  <td>{{row.pnrid}}</td>
+                  <td>PNR{{row.pnrid}}</td>
     
                   <td>{{row.name}}</td>
     
@@ -88,6 +89,8 @@
                   <td>{{row.emailid}}</td>
 
                   <td>{{row.mealpreferences}}</td>
+
+                  <td>{{row.status}}</td>
 
     
                 </tr>

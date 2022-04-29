@@ -5,14 +5,14 @@
   
         <div class="card">
   
-          <div class="card-body" style="overflow-x:scroll;overflow-y: scroll;">
+          <div class="card-body" style="overflow-x:scroll;overflow-y: scroll;font-size: 13px;">
   
-            <p class="card-title"><b>Schedule Master</b>&nbsp;<button type="button" class="btn btn-secondary" (click)="open(mymodal)" id="btn1"  data-bs-toggle="modal" data-bs-target="#exampleModal"><b>+</b></button></p>
+            <p class="card-title"><b>SCHEDULE MASTER</b>&nbsp;<button type="button" class="btn btn-secondary" (click)="open(mymodal)" id="btn1"  data-bs-toggle="modal" data-bs-target="#exampleModal"><b>+</b></button></p>
             
       
             <table class="table table-striped" >
   
-              <thead>
+              <thead class="table-success">
   
               <tr>
                 <th scope="col">Airline Name</th>
@@ -25,7 +25,7 @@
                 <th scope="col">Ticket Cost For Business</th>
                 <th scope="col">Ticket Cost For non Business</th>
                 <th scope="col">Meal Preference</th>
-                <th scope="col"></th>
+              <!--  <th scope="col"></th> -->
   
               </tr>
   
@@ -56,7 +56,7 @@
                 <td>{{row.mealpreference}}</td>
 
   
-                <td><button class="btn btn-info btn-sm" (click)="onEdit(mymodal,row)"><b>Edit</b></button></td>
+              <!--  <td><button class="btn btn-info btn-sm" (click)="onEdit(mymodal,row)"><b>Edit</b></button></td>-->
   
               </tr>
   
@@ -108,7 +108,7 @@
                 </div>
               
                 <div class="mb-3">
-                  <label for="ArrivalTime" class="col-form-label">Arrival Time:</label>
+                  <label for="ArrivalTime" class="col-form-label">Depature Time:</label>
                     <input type="time" class="form-control" formControlName="Depature" placeholder="mm:ss"  >
                   </div>
                 
@@ -137,14 +137,14 @@
   
               <div class="mb-3">
                 <label for="TicketCostForBusiness" class="col-form-label">Ticket Cost For Business:</label>
-                <input type="text" class="form-control" formControlName="TicketCostForBusiness" placeholder="Ticket Cost For Business" >
+                <input type=number class="form-control" formControlName="TickeCostForBusiness" placeholder="Ticket Cost For Business" >
               </div>
 
 
               
               <div class="mb-3">
                 <label for="TicketCostForNonBusiness" class="col-form-label">Ticket Cost For Non Business:</label>
-                <input type="text" class="form-control" formControlName="TicketCostForNonBusiness" placeholder="Ticket Cost For Non Business" >
+                <input type=number class="form-control" formControlName="TickeCostForNonBusiness" placeholder="Ticket Cost For Non Business" >
               </div>
   
              
@@ -152,8 +152,8 @@
                 <label for="ddMealPreference" class="col-form-label">Meal Preference:</label>
                 <select class="form-control" id="ddMealPreference">
                   <option>--select--</option>
-                  <option value="V">VEG</option>
-                  <option value="NV">NON-VEG</option>
+                  <option value="VEG">VEG</option>
+                  <option value="NONVEG">NON-VEG</option>
                 </select>
               
               </div>

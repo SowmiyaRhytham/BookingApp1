@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
 import {AuthServiceService } from '../auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent implements OnInit {
     
   });
 
-  constructor(public authService:AuthServiceService) { }
+  constructor(public authService:AuthServiceService,private router:Router) { }
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
@@ -36,7 +37,7 @@ export class RegisterComponent implements OnInit {
        if(result != null)
        {
         alert('User Register Successfully!!');
-        location.replace("/login");
+        this.router.navigateByUrl("/login");
        }
       });
     }
